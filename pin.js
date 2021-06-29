@@ -29,5 +29,10 @@ class PinLogin {
       "0",
       "done",
     ];
+
+    padLayout.forEach((key) => {
+      const insertBreak = key.search(/[369]/) !== -1;
+      const keyEl = document.createElement("div");
+    });
   }
 }
