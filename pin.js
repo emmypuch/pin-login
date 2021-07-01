@@ -33,6 +33,9 @@ class PinLogin {
     padLayout.forEach((key) => {
       const insertBreak = key.search(/[369]/) !== -1;
       const keyEl = document.createElement("div");
+
+      keyEl.classList.add("pin-login__key");
+      keyEl.classList.toggle("material-icons");
     });
   }
 }
