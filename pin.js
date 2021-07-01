@@ -54,7 +54,7 @@ class PinLogin {
         this.value = this.value.substring(0, this.value.length - 1);
         break;
       case "done":
-        this.attemptLogin();
+        this._attemptLogin();
         break;
       default:
         if (this.value.length < this.maxNumbers && !isNaN(key)) {
@@ -67,6 +67,25 @@ class PinLogin {
   }
 
   _updateValueText() {
-    this.el.textDisplay.value = this.value;
+    this.el.textDisplay.value = "_".repeat(this.value.length);
+    this.el.textDisplay.classList.remove("pin-login__text--error");
+  }
+
+  _attemptLogin() {
+    if (this.value.length > 0) {
+      fetch(this.loginEndpoint, {
+        method: "post",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: `pincode=$(this.value)`,
+      }).then((response) => {
+        if (response.status === 200) {
+          window.location.href = this.redirectTo;
+        } else {
+          this.el.textDisplay.classList.add("pin-login__text--error");
+        }
+      });
+    }
   }
 }
