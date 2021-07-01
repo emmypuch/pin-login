@@ -78,7 +78,7 @@ class PinLogin {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },
-        body: `pincode=$(this.value)`,
+        body: `pincode=${this.value}`,
       }).then((response) => {
         if (response.status === 200) {
           window.location.href = this.redirectTo;
